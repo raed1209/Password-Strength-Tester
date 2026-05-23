@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Strength Tester</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Password Strength Tester</h1>
+      <p class="subtitle">OWASP-based real-time analysis</p>
+    </header>
+
+    <main>
+      <!-- Input -->
+      <section class="input-section card">
+        <div class="input-wrapper">
+          <input
+            type="password"
+            id="passwordInput"
+            placeholder="Enter a password to analyse..."
+            autocomplete="new-password"
+            aria-label="Password to analyse"
+            aria-describedby="strengthLabel"
+          />
+          <button id="toggleVisibility" aria-pressed="false" title="Show / hide password">
+            <span class="eye-icon">&#128065;</span>
+          </button>
+        </div>
+
+        <!-- Strength meter -->
+        <div class="meter-row">
+          <div class="segments" role="img" aria-label="Strength meter">
+            <div class="seg" id="seg1"></div>
+            <div class="seg" id="seg2"></div>
+            <div class="seg" id="seg3"></div>
+            <div class="seg" id="seg4"></div>
+            <div class="seg" id="seg5"></div>
+          </div>
+          <span id="strengthLabel" class="strength-label" aria-live="polite">—</span>
+        </div>
+
+        <!-- Crack time -->
+        <div class="crack-row" id="crackRow" aria-live="polite">
+          <span class="crack-label">Est. time to crack:</span>
+          <span id="crackTime" class="crack-value">—</span>
+        </div>
+      </section>
+
+      <!-- Results -->
+      <section class="results-section" id="resultsSection" hidden>
+
+        <!-- Rule checklist -->
+        <div class="card checklist-card">
+          <h2>Rule Checklist</h2>
+          <ul class="checklist" id="checklist" role="list" aria-live="polite" aria-atomic="true">
+            <li data-rule="minLength">Minimum 8 characters</li>
+            <li data-rule="uppercase">Contains uppercase letter</li>
+            <li data-rule="lowercase">Contains lowercase letter</li>
+            <li data-rule="number">Contains a number</li>
+            <li data-rule="special">Contains special character</li>
+            <li data-rule="notCommon">Not a commonly used password</li>
+            <li data-rule="noWeakPatterns">No keyboard walks or repeated chars</li>
+            <li data-rule="noDictionary">No plain dictionary word</li>
+            <li data-rule="passphrase">Passphrase bonus (4+ words)</li>
+          </ul>
+        </div>
+
+        <!-- Verdict & tips -->
+        <div class="card verdict-card" id="verdictCard">
+          <h2>Verdict</h2>
+          <p id="verdictText" class="verdict-text"></p>
+          <ul id="tipsList" class="tips-list"></ul>
+        </div>
+
+        <!-- Copy report -->
+        <div class="card report-card">
+          <button id="copyReport" class="btn-secondary">Copy Report</button>
+          <span id="copyConfirm" class="copy-confirm" hidden>Copied!</span>
+        </div>
+      </section>
+
+      <!-- Generators -->
+      <section class="generators card">
+        <h2>Password Generators</h2>
+        <div class="gen-buttons">
+          <button id="genPassphrase" class="btn-primary">Generate Passphrase</button>
+          <button id="genStrong" class="btn-primary">Generate Strong Password</button>
+        </div>
+        <div id="genOutput" class="gen-output" hidden>
+          <code id="genText"></code>
+          <button id="copyGen" class="btn-secondary btn-small">Copy</button>
+        </div>
+      </section>
+
+      <!-- History -->
+      <section class="history-section card" id="historySection">
+        <h2>Recent Evaluations</h2>
+        <div id="historyList" class="history-list">
+          <p class="history-empty">No evaluations yet.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
