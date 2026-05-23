@@ -1,0 +1,20 @@
+{
+  "name": "password-strength-tester",
+  "version": "2.0.0",
+  "description": "Full-stack password strength analyser - Express + SQLite backend, modular OWASP analyzers",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "sql.js": "^1.10.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
